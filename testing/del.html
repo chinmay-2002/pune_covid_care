@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 20%;
+            height: 10%;
+            margin: 1em;
+            padding: 1em;
+            outline: none;
+            border-radius: 5px;
+            border: thin solid skyblue;
+        }
+        #submit{
+            
+            padding: 1em;
+            margin: 1em;
+            border-radius: 5px;
+            border: white thin;
+            background-color: rgb(3, 111, 219);
+            color: white;
+            
+        }
+        #submit:hover{
+            background-color: rgb(4, 90, 176);
+        }
+        #submit:active{
+            background-color:  rgb(60, 130, 200);
+        }
+        #delete{
+            padding: 1em;
+            margin: 1em;
+            border-radius: 5px;
+            border: white thin;
+            background-color: rgb(219, 30, 30);
+            color: white;
+        }
+        #delete:hover{
+            background-color: rgb(162, 30, 30);;
+        }
+        #delete:active{
+            background-color:   rgb(212, 92, 92);
+        }
+    </style>
+</head>
+<body>
+    <div><input id="id" type="text" placeholder="phone number"></div>
+    <div><button id="delete">Delete</button></div>    
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+ 
+    //add your firebase config var here
+const firebaseConfig = {
+  apiKey: "AIzaSyBIb4a8tynv4206X1bstUtd0dyX4DlSDkg",
+  authDomain: "pune-covid-care.firebaseapp.com",
+  databaseURL: "https://pune-covid-care-default-rtdb.firebaseio.com",
+  projectId: "pune-covid-care",
+  storageBucket: "pune-covid-care.appspot.com",
+  messagingSenderId: "318732941809",
+  appId: "1:318732941809:web:ef9d4a718d4beaec112c50",
+  measurementId: "G-YPYP520N4W"
+};
+
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var id, name, age;
+
+  function getdata(){
+      id = document.getElementById('id').value;
+       }
+
+  document.getElementById('delete').onclick = function(){
+      firebase.database().ref("Plasma Donors").child(id.value).remove();
+  }
+</script>
+</body>
+</html>

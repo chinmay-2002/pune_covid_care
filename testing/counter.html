@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Card</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body> 
+ 
+ <center>
+  <h2>Covid 19 API</h2>
+
+
+
+  <div class="card-group" style="width: 100%;">
+
+    <div class="card bg-primary">
+      <div class="card-body text-center">
+        <h4 class="card-text">Confirmed</h4>
+        <h2 id="confirmed"></h2>
+      </div>
+    </div>
+
+    <div class="card bg-warning">
+      <div class="card-body text-center">
+        <h4 class="card-text">Active</h4>
+        <h2 id="active"></h2>
+      </div>
+    </div>
+
+    <div class="card bg-success">
+      <div class="card-body text-center">
+        <h4 class="card-text">Recovered</h4>
+        <h2 id="recovered"></h2>
+      </div>
+    </div> 
+
+    <div class="card bg-danger">
+      <div class="card-body text-center">
+        <h4 class="card-text">Deceased</h4>
+        <h2 id="deceased"></h2>
+      </div>
+    </div>
+    
+  </div>
+</center>
+<script>
+	
+fetch('https://api.covid19india.org/state_district_wise.json').then( (apidata) => {
+		console.log(apidata);
+		return apidata.json();
+}).then((actualdata) => {
+	const mydata1 = (actualdata.Maharashtra.districtData.Pune.active);
+	const mydata2 = (actualdata.Maharashtra.districtData.Pune.confirmed);
+	const mydata3 = (actualdata.Maharashtra.districtData.Pune.deceased);
+	const mydata4 = (actualdata.Maharashtra.districtData.Pune.recovered);
+	const mydata5 = (actualdata.Maharashtra.districtData.Pune.migratedother);
+
+	document.getElementById('active').innerHTML = mydata1;
+	document.getElementById('confirmed').innerHTML = mydata2;
+	document.getElementById('deceased').innerHTML = mydata3;
+	document.getElementById('recovered').innerHTML = mydata4;
+	document.getElementById('migratedother').innerHTML = mydata5;
+
+}).catch((error) => {
+	console.log(error);
+});
+
+</script>
+</body>
+</html>

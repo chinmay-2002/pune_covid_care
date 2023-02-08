@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API Testing</title>
+</head>
+
+<body>
+
+<h1>Pune Covid-19 Data</h1>
+
+<h2>Active Cases: </h2>
+<h2 id="active"></h2>
+
+<h2>Confirmed Cases: </h2>
+<h2 id="confirmed"></h2>
+
+<h2>Deceased Cases: </h2>
+<h2 id="deceased"></h2>
+
+<h2>Recovered Cases: </h2>
+<h2 id="recovered"></h2>
+
+<h2>Migrated other Cases: </h2>
+<h2 id="migratedother"></h2>
+
+
+<script type="text/javascript">
+	
+fetch('https://api.covid19india.org/state_district_wise.json').then( (apidata) => {
+		console.log(apidata);
+		return apidata.json();
+}).then((actualdata) => {
+	const mydata1 = (actualdata.Maharashtra.districtData.Pune.active);
+	const mydata2 = (actualdata.Maharashtra.districtData.Pune.confirmed);
+	const mydata3 = (actualdata.Maharashtra.districtData.Pune.deceased);
+	const mydata4 = (actualdata.Maharashtra.districtData.Pune.recovered);
+	const mydata5 = (actualdata.Maharashtra.districtData.Pune.migratedother);
+
+	document.getElementById('active').innerHTML = mydata1;
+	document.getElementById('confirmed').innerHTML = mydata2;
+	document.getElementById('deceased').innerHTML = mydata3;
+	document.getElementById('recovered').innerHTML = mydata4;
+	document.getElementById('migratedother').innerHTML = mydata5;
+
+}).catch((error) => {
+	console.log(error);
+});
+
+</script>
+
+</body>
+</html>
+
